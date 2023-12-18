@@ -1,6 +1,8 @@
 #include <Windows.h>
 #include <shlwapi.h>
 
+#pragma comment(lib, "shlwapi.lib")
+
 #include "CommandLine.h"
 #include "ToInteger.h"
 
@@ -255,6 +257,7 @@ void inject(LPTSTR dll, PROCESS_INFORMATION pi)
 	else exception(_T("Unable to allocate virtual memory in process\n"), E_UAVMP);
 }
 
+#pragma function(memset)
 void* memset(void* dest, int val, unsigned int len)
 {
 	unsigned char* ptr = dest;
